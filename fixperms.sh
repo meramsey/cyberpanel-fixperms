@@ -20,12 +20,44 @@ helptext () {
     echo "Options:"
     echo "-h or --help: print this screen and exit"
     echo "-v: verbose output"
-#    echo "-all: run on all Cyberpanel accounts"
+    echo "-all: run on all Cyberpanel accounts"
     echo "--account or -a: specify a Cyberpanel account"
 #   echo "--domain or -d: specify a Cyberpanel domain"
     tput sgr0
     exit 0
 }
+
+#Detect OS
+if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    . /etc/os-release
+    OS=$NAME
+    VER=$VERSION_ID
+elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
+elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
+elif [ -f /etc/debian_version ]; then
+    # Older Debian/Ubuntu/etc.
+    OS=Debian
+    VER=$(cat /etc/debian_version)
+elif [ -f /etc/SuSe-release ]; then
+    # Older SuSE/etc.
+    ...
+elif [ -f /etc/redhat-release ]; then
+    # Older Red Hat, CentOS, etc.
+    ...
+else
+    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    OS=$(uname -s)
+    VER=$(uname -r)
+fi
+
 
 # Main workhorse, fix perms per account passed to it
 fixperms () {
@@ -122,12 +154,33 @@ fixperms () {
 }
 
 #Parses all users through Cyberpanel's users file
+#all () {
+#    for user in $(cut -d: -f1 /etc/domainusers)
+#    do
+#  fixperms "$user"
+#    done
+#}
+
+
 all () {
-    for user in $(cut -d: -f1 /etc/domainusers)
+
+if [[ $OS = 'CentOS Linux' ]] ; then
+   for user in $(getent passwd | awk -F: '5001<$3 && $3<6000 {print $1}' |grep -v spamd)
     do
   fixperms "$user"
     done
+fi
+
+if [[ $OS = 'Ubuntu' ]] ; then
+   for user in $(getent passwd | awk -F: '1001<$3 && $3<2000 {print $1}')
+    do
+  fixperms "$user"
+    done
+fi
+
 }
+
+
 
 #Main function, switches options passed to it
 case "$1" in
