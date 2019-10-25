@@ -19,7 +19,7 @@ Note: This is intended for **non-DSO** servers (Meaning, it will run just fine f
 To get the `fixperms` script, simply wget the file from Gitlab and make sure it's executable:
 
 ```bash
-wget https://github.com/spyngamerman/Cyberpanel-fixperms/raw/master/fixperms.sh
+wget https://gitlab.com/cyberpaneltoolsnscripts/cyberpanel-fixperms/raw/master/fixperms.sh
 chmod +x fixperms.sh
 ```
 
@@ -61,7 +61,7 @@ I host numerous websites for friends and family, who will routinely make mistake
 sudo mv fixperms.sh /usr/bin/fixperms
 ```
 
-## History: Originall ported from https://github.com/PeachFlame/cPanel-fixperms
+## History: Originally forked from https://github.com/PeachFlame/cPanel-fixperms
 Now that `fixperms` is in Github, all contributors will have proper credit. However, before the move to Github, there were a 2 inidividuals that were crucial to the scripts existence:
 
 - Dean Freeman
