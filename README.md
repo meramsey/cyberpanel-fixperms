@@ -16,7 +16,7 @@ Note: This is intended for **non-DSO** servers (Meaning, it will run just fine f
 
 ### Fixperms - for one single user
 
-To get the `fixperms` script, simply wget the file from GitHub and make sure it's executable:
+To get the `fixperms` script, simply wget the file from Gitlab and make sure it's executable:
 
 ```bash
 wget https://github.com/spyngamerman/Cyberpanel-fixperms/raw/master/fixperms.sh
@@ -29,7 +29,7 @@ sudo sh ./fixperms.sh -a USER-NAME
 ```
 It does not matter which directory you are in when you run fixperms. You can be in the user’s home directory, the server root, etc... The script will not affect anything outside of the particular user’s home folder.
 
-### Fixperms - for all of the users
+### Fixperms - for all of the users: NOT Working
 If you would like fix the permissions for every user on your Cyberpanel server, simply use the '-all' option:
 
 ```bash
@@ -44,7 +44,7 @@ By default, the script runs in a 'quiet' mode with minimal display. However, if 
 sudo sh ./fixperms.sh -v -a USER-NAME
 ```
 
-#### For all accounts ####
+#### For all accounts NOT Working ####
 ```bash
 sudo sh ./fixperms.sh -v -all
 ```
@@ -61,7 +61,7 @@ I host numerous websites for friends and family, who will routinely make mistake
 sudo mv fixperms.sh /usr/bin/fixperms
 ```
 
-## History
+## History: Originall ported from https://github.com/PeachFlame/cPanel-fixperms
 Now that `fixperms` is in Github, all contributors will have proper credit. However, before the move to Github, there were a 2 inidividuals that were crucial to the scripts existence:
 
 - Dean Freeman
