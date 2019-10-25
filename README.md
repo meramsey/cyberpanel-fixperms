@@ -29,7 +29,7 @@ sudo sh ./fixperms.sh -a USER-NAME
 ```
 It does not matter which directory you are in when you run fixperms. You can be in the user’s home directory, the server root, etc... The script will not affect anything outside of the particular user’s home folder.
 
-### Fixperms - for all of the users: NOT Working
+### Fixperms - for all of the users:
 If you would like fix the permissions for every user on your Cyberpanel server, simply use the '-all' option:
 
 ```bash
@@ -44,7 +44,7 @@ By default, the script runs in a 'quiet' mode with minimal display. However, if 
 sudo sh ./fixperms.sh -v -a USER-NAME
 ```
 
-#### For all accounts NOT Working ####
+#### For all accounts ####
 ```bash
 sudo sh ./fixperms.sh -v -all
 ```
