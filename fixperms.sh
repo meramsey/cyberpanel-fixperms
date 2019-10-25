@@ -1,6 +1,6 @@
 #! /bin/bash
 # Cyberpanel Fix Perms
-# 
+# https://gitlab.com/cyberpaneltoolsnscripts/cyberpanel-fixperms
 # 
 # Forked from https://github.com/PeachFlame/cPanel-fixperms
 #
@@ -20,7 +20,7 @@ helptext () {
     echo "Options:"
     echo "-h or --help: print this screen and exit"
     echo "-v: verbose output"
-    echo "-all: run on all cPanel accounts"
+#    echo "-all: run on all Cyberpanel accounts"
     echo "--account or -a: specify a Cyberpanel account"
 #   echo "--domain or -d: specify a Cyberpanel domain"
     tput sgr0
