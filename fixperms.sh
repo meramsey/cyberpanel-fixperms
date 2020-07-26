@@ -59,6 +59,21 @@ else
 fi
 
 
+# fix mailperms
+fixmailperms () {
+    tput bold
+    tput setaf 4
+    echo "Fixing mailperms...."
+    tput sgr0
+    #Fix perms of /home/vmail
+    chown -R vmail:vmail /home/vmail
+    chmod 755 /home/vmail
+    find /home/vmail -type d -exec chmod 0755 {} \;
+    find /home/vmail -type f -exec chmod 0640 {} \;
+    echo "Finished fixing mailperms...."
+
+}
+
 # Main workhorse, fix perms per account passed to it
 fixperms () {
 
@@ -112,15 +127,7 @@ fixperms () {
     chmod $verbose 750 "$HOMEDIR"/logs
     find "$HOMEDIR"/logs/* -name '*.access_log' -exec chown $verbose nobody."$account" {} \;
 
-    tput bold
-    tput setaf 4
-    echo "Fixing mailperms...."
-    tput sgr0
-    #Fix perms of /home/vmail
-    chown -R vmail:vmail /home/vmail
-    chmod 755 /home/vmail
-    find /home/vmail -type d -exec chmod 0755 {} \;
-    find /home/vmail -type f -exec chmod 0640 {} \;
+    
 
     #Fix subdomains that lie outside of public_html
     #tput setaf 3
@@ -169,6 +176,7 @@ if [[ $OS = 'CentOS Linux' ]] ; then
     do
   fixperms "$user"
     done
+   fixmailperms
 fi
 
 if [[ $OS = 'Ubuntu' ]] ; then
@@ -176,6 +184,7 @@ if [[ $OS = 'Ubuntu' ]] ; then
     do
   fixperms "$user"
     done
+  fixmailperms
 fi
 
 }
