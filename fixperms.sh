@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 # Cyberpanel Fix Perms
 # https://gitlab.com/cyberpaneltoolsnscripts/cyberpanel-fixperms
 # 
